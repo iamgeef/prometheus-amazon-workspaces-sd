@@ -1,0 +1,18 @@
+[Unit]
+Description=prometheus-amazon-workspaces-sd
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+User=prometheus
+Group=prometheus
+ExecReload=/bin/kill -HUP $MAINPID
+WorkingDirectory=/opt/prometheus-amazon-workspaces-sd
+ExecStart=/opt/prometheus-amazon-workspaces-sd/prometheus-amazon-workspaces-sd --output.file=/opt/prometheus-amazon-workspaces-sd/workspaces.json --profile=myProfileName
+
+SyslogIdentifier=prometheus-amazon-workspaces-sd
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

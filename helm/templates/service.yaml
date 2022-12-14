@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: { { include "prometheus-amazon-workspaces-sd.fullname" . } }
+  labels:
+    { { - include "prometheus-amazon-workspaces-sd.labels" . | nindent 4 } }
+spec:
+  type: { { .Values.service.type } }
+  ports:
+    - port: { { .Values.service.port } }
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    {
+      {
+        - include "prometheus-amazon-workspaces-sd.selectorLabels" . | nindent 4,
+      },
+    }
