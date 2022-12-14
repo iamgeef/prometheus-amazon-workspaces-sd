@@ -19,7 +19,6 @@ import (
 	"net/http"
 	"os"
 	"strconv"
-	// "strings"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -33,7 +32,6 @@ import (
 	"github.com/prometheus/common/model"
 	"github.com/prometheus/common/version"
 	"github.com/prometheus/prometheus/discovery/targetgroup"
-	// "github.com/prometheus/prometheus/util/strutil"
 	"gopkg.in/alecthomas/kingpin.v2"
 )
 
@@ -103,7 +101,7 @@ type workspacesDiscoverer struct {
 }
 
 func (d *workspacesDiscoverer) createTarget(srv workspaces.Workspace) *targetgroup.Group {
-	level.Debug(d.logger).Log("msg", "creating tg", "tg", srv)
+	// level.Debug(d.logger).Log("msg", "creating tg", "tg", srv)
 	if srv.IpAddress == nil {
 		nullMessage := "null"
 		srv.IpAddress = &nullMessage
@@ -112,8 +110,6 @@ func (d *workspacesDiscoverer) createTarget(srv workspaces.Workspace) *targetgro
 		// create targetgroup
 	tg := &targetgroup.Group{
 		Source: fmt.Sprintf("workspaces/%s", *srv.WorkspaceId),
-		// var target = string
-		// target = ""
 		Targets: []model.LabelSet{
 			model.LabelSet{
 				model.AddressLabel: model.LabelValue(*srv.IpAddress+":"+*exporterPort),
@@ -145,20 +141,11 @@ func (d *workspacesDiscoverer) getTargets() ([]*targetgroup.Group, error) {
 	err := d.client.DescribeWorkspacesPages(params,
 		func(page *workspaces.DescribeWorkspacesOutput, lastPage bool) bool {
 			pageNum++
-			// if page.NextToken != nil {
-			// fmt.Println(len(srvs))
 				for _,s := range page.Workspaces {
-					// fmt.Println(i, s)
-					// level.Debug(logger).Log("num", i)
 					srvs = append(srvs,*s)
 				}
-			// } else {
-			// 	return false
-			// }
-			// return true
 			return pageNum <= *pages - 1
 		})
-	// level.Info(logger).Log("msg", srv, srvs)
 	requestDuration.Observe(time.Since(now).Seconds())
 
 	if err != nil {
@@ -257,7 +244,6 @@ func main() {
 		}
 	}
 
-	// create new workspaces client (workspaces.New does not return an err currently)
 	workspacesClient := workspaces.New(sess)
 
 	ctx := context.Background()
