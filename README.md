@@ -63,7 +63,7 @@ This tool supports AWS IAM Roles attached to instances, ie. running in EC2/ECS/e
 
 ## Installing it
 
-Download the binary from the [Releases](https://github.com/n888/prometheus-amazon-workspaces-sd/releases) page.
+Download the binary from the [Releases](https://github.com/iamgeef/prometheus-amazon-workspaces-sd/releases) page.
 
 ## Running it
 
@@ -179,4 +179,4 @@ Pull requests, issues and suggestions are appreciated.
 
 ## License
 
-Apache License 2.0, see [LICENSE](https://github.com/n888/prometheus-amazon-workspaces-sd/blob/master/LICENSE).
+Apache License 2.0, see [LICENSE](https://github.com/iamgeef/prometheus-amazon-workspaces-sd/blob/master/LICENSE).
