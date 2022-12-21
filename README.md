@@ -8,7 +8,7 @@ As well as the other credits listed below, the main hat-tip is to n888 and their
 
 ## How it works
 
-This service gets the list of Workspaces from a single region from the Workspaces API and generates a file which is compatible with the Prometheus `file_sd` mechanism.
+This service gets the list of Workspaces in a single region from the Workspaces API and generates a file which is compatible with the Prometheus `file_sd` mechanism.
 
 ## Pre-requisites
 
