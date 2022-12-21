@@ -3,7 +3,7 @@ run-name: Building for all platforms in `.promu.yml`
 on:
   push:
     branches:
-      - master
+      - main
 jobs:
   crossbuild:
     runs-on: ubuntu-latest
