@@ -14,8 +14,10 @@ build:
         -X github.com/prometheus/common/version.BuildUser=prometheus@amazon-workspaces-sd
         -X github.com/prometheus/common/version.BuildDate={{date "20060102-15:04:05"}}
 tarball:
+    prefix: .
     files:
         - LICENSE
+        - README.md
 crossbuild:
     platforms:
         - linux/amd64

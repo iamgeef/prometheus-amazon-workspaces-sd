@@ -1,0 +1,28 @@
+name: "Promu Build : Crossbuild"
+run-name: Building for all platforms in `.promu.yml`
+on:
+  push:
+    branches:
+      - master
+jobs:
+  crossbuild:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out
+        uses: actions/checkout@v3
+      - name: Get Promu release
+        run: wget https://github.com/prometheus/promu/releases/download/v0.13.0/promu-0.13.0.linux-amd64.tar.gz
+      - name: Untar release
+        run: tar -xvf promu-0.13.0.linux-amd64.tar.gz
+      - name: Move binary to root
+        run: mv promu-0.13.0.linux-amd64/promu ./promu
+      - name: set permissions
+        run: chmod +x promu
+      - name: Build for architectures listed in .promu.yml
+        run: ./promu -v crossbuild
+      - name: Create tarballs for each build
+        run: ./promu -v crossbuild tarballs
+      - name: Create a new Github release and attach tarballs
+        run: ./promu -v release .tarballs
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
