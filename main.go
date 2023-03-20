@@ -49,6 +49,7 @@ var (
 	sess   client.ConfigProvider
 
 	userNameLabel = model.MetaLabelPrefix + "workspaces_username"
+	workspaceIdLabel = model.MetaLabelPrefix + "workspaces_id"
 	subnetIdLabel      = model.MetaLabelPrefix + "workspaces_subnet_id"
 	stateLabel         = model.MetaLabelPrefix + "workspaces_state"
 	directoryIdLabel       = model.MetaLabelPrefix + "workspaces_directory_id"
@@ -118,6 +119,7 @@ func (d *workspacesDiscoverer) createTarget(srv workspaces.Workspace) *targetgro
 		Labels: model.LabelSet{
 			model.AddressLabel:                     model.LabelValue(*srv.IpAddress),
 			model.LabelName(userNameLabel): 		model.LabelValue(*srv.UserName),
+			model.LabelName(workspaceIdLabel):		model.LabelValue(*srv.WorkspaceId),
 			model.LabelName(subnetIdLabel):      	model.LabelValue(*srv.SubnetId),
 			model.LabelName(stateLabel):        	 model.LabelValue(*srv.State),
 			model.LabelName(directoryIdLabel):             model.LabelValue(*srv.DirectoryId),
