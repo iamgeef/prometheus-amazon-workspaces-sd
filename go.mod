@@ -1,6 +1,6 @@
 module github.com/iamgeef/prometheus-amazon-workspaces-sd
 
-go 1.15
+go 1.21
 
 require (
 	github.com/aws/aws-sdk-go v1.47.11
