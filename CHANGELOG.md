@@ -6,3 +6,7 @@
 ## 1.2.0 / 2022-03-21
 
 - [FEATURE] Added Workspace Id as an available label
+
+## 1.3.0 / 2024-01-18
+
+- [FEATURE] Upgade Go to v1.21
