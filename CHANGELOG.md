@@ -10,3 +10,7 @@
 ## 1.3.0 / 2024-01-18
 
 - [FEATURE] Upgade Go to v1.21
+
+## 1.4.0 / 2024-01-18
+
+- [FEATURE] Upgade AWS Go SDK to v1.47.11 - primarily to support EKS Pod Identity
